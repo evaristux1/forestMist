@@ -1,17 +1,14 @@
 export default class LevelText extends Phaser.GameObjects.Text {
   constructor(public _scene: Phaser.Scene, level: number) {
-    super(_scene, 0, 0, `Level: ${level + 1}`, {
+    super(_scene, 0, 0, `Nivel: ${level + 1}`, {
       color: '#324951',
       fontSize: 56,
       fontWeight: 'bold',
-      fontStyle: 'bold'
+      fontStyle: 'bold',
     })
     _scene.add.existing(this)
 
-    this.setScrollFactor(0)
-      .setOrigin(0.5, 0)
-      .setAlpha(0.5)
-      .startTween()
+    this.setScrollFactor(0).setOrigin(0.5, 0).setAlpha(0.5).startTween()
   }
 
   adjustPosition() {
@@ -20,13 +17,13 @@ export default class LevelText extends Phaser.GameObjects.Text {
   }
 
   private tweensAsync = (config: { [key: string]: any }): Promise<{}> => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.scene.tweens.add({
         ...config,
         onComplete: () => {
           if (config.onComplete) config.onComplete()
           resolve()
-        }
+        },
       })
     })
   }
@@ -39,7 +36,7 @@ export default class LevelText extends Phaser.GameObjects.Text {
       yoyo: true,
       delay: 500,
       duration: 200,
-      onComplete: () => console.log('tween 1 completed')
+      onComplete: () => console.log('1'),
     })
 
     await this.tweensAsync({
@@ -50,7 +47,7 @@ export default class LevelText extends Phaser.GameObjects.Text {
       ease: 'Sine.easeInOut',
       delay: 500,
       duration: 400,
-      onComplete: () => console.log('tween 2 completed')
+      onComplete: () => console.log('2'),
     })
 
     this.setFontSize(28)
@@ -61,7 +58,7 @@ export default class LevelText extends Phaser.GameObjects.Text {
       alpha: 0,
       delay: 2000,
       duration: 400,
-      onComplete: () => console.log('tween 3 completed')
+      onComplete: () => console.log('3'),
     })
 
     this.destroy()

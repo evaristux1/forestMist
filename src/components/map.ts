@@ -13,48 +13,47 @@ export class Map {
     const config: any = {
       '[': {
         type: 'tile',
-        texture: 'tile-left'
+        texture: 'tile-left',
       },
       '/': {
         type: 'tile',
-        texture: 'tile-middle'
+        texture: 'tile-middle',
       },
       ']': {
         type: 'tile',
-        texture: 'tile-right'
+        texture: 'tile-right',
       },
       G: {
         type: 'goal',
-        texture: 'goal'
+        texture: 'goal',
       },
       O: {
         type: 'coin',
-        texture: 'coin'
+        texture: 'coin',
       },
       S: {
         type: 'enemy',
-        texture: 'slime'
+        texture: 'slime',
       },
       B: {
         type: 'enemy',
-        texture: 'bee'
+        texture: 'bee',
       },
       P: {
         type: 'player',
-        texture: 'player'
-      }
+        texture: 'player',
+      },
     }
 
     const map = Levels[Map.calcCurrentLevel(currentLevel)]
 
-    // the player can jump a bit higher than the map's height
     const paddingTop = 4 * TILE_SIZE
 
     this.size = {
       x: 0,
       y: 0,
       width: map[0].length * TILE_SIZE,
-      height: map.length * TILE_SIZE + paddingTop
+      height: map.length * TILE_SIZE + paddingTop,
     }
     this.info = []
 

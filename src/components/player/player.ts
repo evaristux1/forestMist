@@ -15,13 +15,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene = scene
     this.mapSize = mapSize
 
-    // scene.anims.create({
-    //   key: 'walk',
-    //   frames: scene.anims.generateFrameNames('player'),
-    //   frameRate: 8,
-    //   repeat: -1
-    // })
-    // this.play('walk')
+    scene.anims.create({
+      key: 'walk',
+      frames: scene.anims.generateFrameNames('player'),
+      frameRate: 8,
+      repeat: -1,
+    })
+    this.play('walk')
 
     this.setVisible(false)
 
@@ -32,7 +32,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
     let theSkin = level % 2 == 0 ? 'blue' : 'green'
     this.playerSpine = new PlayerSpine(scene, this.body.center.x, this.body.bottom)
-    this.playerSpine.setSkin(theSkin)
+    this.playerSpine.setSkin('green')
   }
 
   kill() {
@@ -42,7 +42,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.scene.cameras.main.shake(500, 0.025)
     this.scene.time.addEvent({
       delay: 500,
-      callback: () => this.scene.scene.restart()
+      callback: () => this.scene.scene.restart(),
     })
   }
 

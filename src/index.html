@@ -15,15 +15,15 @@
     <meta name="apple-mobile-web-app-title" content="Platformer PWA" />
     <meta name="msapplication-starturl" content="./" />
 
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/icons-192.png" />
-    <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="./assets/icons/icons-192.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" type="image/png" sizes="192x192" href="./assets/icons/favicon.ico" />
 
-    <link rel="icon" type="image/png" sizes="512x512" href="./assets/icons/icons-512.png" />
-    <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="./assets/icons/icons-512.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/icons/favicon.ico" />
+    <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="./assets/icons/favicon.ico" />
 
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 
-    <title>Platformer PWA</title>
+    <title>Planet Scapes</title>
   </head>
   <body>
     <style>
@@ -62,21 +62,16 @@
       }
     </style>
 
-    <noscript>Please enable javascript to continue using this application.</noscript>
+    <noscript>POops esete jogo precisa do javaScritp habilitado!.</noscript>
 
     <div id="loading-screen">
-      <h2 id="item">loading...</h2>
+      <h2 id="item">
+        <img src="/src/assets/gif/Cube-1s-200px.gif" alt="Computer man" style="width: 148px; height: 148px" />
+        <br />Carregando...
+      </h2>
     </div>
 
     <div id="phaser-game"></div>
-
-    <script>
-      // var loadingScreen = document.getElementsByTagName('body')
-      // loadingScreen[0].addEventListener('click', function(event) {
-      //   event.preventDefault()
-      //   console.log('click')
-      // })
-    </script>
 
     <script>
       // Check that service workers are registered

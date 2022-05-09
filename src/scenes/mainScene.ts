@@ -9,7 +9,6 @@ import Controls from '../components/controls/controls'
 import LevelText from '../components/levelText'
 import Background from '../components/background'
 import MiniMap from '../components/miniMap'
-import PhaserVersionText from '../components/phaserVersionText'
 
 export default class MainScene extends Phaser.Scene {
   player: Player
@@ -23,7 +22,7 @@ export default class MainScene extends Phaser.Scene {
   miniMap: MiniMap
   constructor() {
     super({
-      key: 'MainScene'
+      key: 'MainScene',
     })
   }
 
@@ -45,14 +44,19 @@ export default class MainScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys()
 
     this.background = new Background(this)
-    this.tilesGroup = new TilesGroup(this, map.info.filter((el: TilesConfig) => el.type === 'tile'))
+    this.tilesGroup = new TilesGroup(
+      this,
+      map.info.filter((el: TilesConfig) => el.type === 'tile')
+    )
     this.goal = new GoalSprite(this, map.info.filter((el: TilesConfig) => el.type === 'goal')[0])
     this.player = new Player(this, map.info.filter((el: TilesConfig) => el.type === 'player')[0], map.size, this.level)
     this.enemiesGroup = new EnemiesGroup(this, map.info)
-    const coinGroup = new CoinGroup(this, map.info.filter((el: TilesConfig) => el.type === 'coin'))
+    const coinGroup = new CoinGroup(
+      this,
+      map.info.filter((el: TilesConfig) => el.type === 'coin')
+    )
     this.controls = new Controls(this)
     const levelText = new LevelText(this, this.level)
-    const phaserVersion = new PhaserVersionText(this, 0, 0, `Phaser v${Phaser.VERSION}`)
 
     this.cameras.main.startFollow(this.player)
 
@@ -90,7 +94,6 @@ export default class MainScene extends Phaser.Scene {
       this.controls.buttons.up,
       this.controls.buttons.left,
       this.controls.buttons.right,
-      phaserVersion
     ])
     this.miniMap.update(this.player)
 
@@ -103,15 +106,12 @@ export default class MainScene extends Phaser.Scene {
         callback: () => {
           // @ts-ignore
           loadingScreen.remove()
-        }
+        },
       })
     }
 
-    // the resize function
     const resize = () => {
       this.controls.adjustPositions()
-      phaserVersion.x = this.cameras.main.width - 15
-      phaserVersion.y = 15
       this.background.adjustPosition()
       levelText.adjustPosition()
     }
@@ -119,7 +119,6 @@ export default class MainScene extends Phaser.Scene {
     this.scale.on('resize', (gameSize: any) => {
       this.cameras.main.width = gameSize.width
       this.cameras.main.height = gameSize.height
-      //this.cameras.resize(gameSize.width, gameSize.height)
       resize()
     })
     resize()

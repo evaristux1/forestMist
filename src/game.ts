@@ -18,22 +18,21 @@ window.addEventListener('load', () => {
     backgroundColor: '#ffffff',
     parent: 'phaser-game',
     scale: {
-      // The game will be scaled manually in the resize()
       mode: Phaser.Scale.NONE,
       width: DEFAULT_WIDTH,
-      height: DEFAULT_HEIGHT
+      height: DEFAULT_HEIGHT,
     },
     plugins: {
-      scene: [{ key: 'SpineWebGLPlugin', plugin: SpineWebGLPlugin, start: true, sceneKey: 'spine' }]
+      scene: [{ key: 'SpineWebGLPlugin', plugin: SpineWebGLPlugin, start: true, sceneKey: 'spine' }],
     },
     scene: [PreloadScene, MainScene],
     physics: {
       default: 'arcade',
       arcade: {
         debug: false,
-        gravity: { y: 2500 }
-      }
-    }
+        gravity: { y: 2500 },
+      },
+    },
   }
 
   const game = new Phaser.Game(config)
@@ -84,7 +83,7 @@ window.addEventListener('load', () => {
     game.canvas.style.marginTop = `${(h - newHeight * scale) / 2}px`
     game.canvas.style.marginLeft = `${(w - newWidth * scale) / 2}px`
   }
-  window.addEventListener('resize', event => {
+  window.addEventListener('resize', (event) => {
     resize()
   })
   resize()
