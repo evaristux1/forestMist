@@ -1,6 +1,7 @@
 import 'phaser'
 import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
+import HomeScene from './scenes/homeScene'
 // @ts-ignore
 import SpineWebGLPlugin from './plugins/SpineWebGLPlugin'
 
@@ -26,7 +27,7 @@ window.addEventListener('load', () => {
     plugins: {
       scene: [{ key: 'SpineWebGLPlugin', plugin: SpineWebGLPlugin, start: true, sceneKey: 'spine' }]
     },
-    scene: [PreloadScene, MainScene],
+    scene: [HomeScene,PreloadScene, MainScene],
     physics: {
       default: 'arcade',
       arcade: {

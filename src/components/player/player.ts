@@ -30,9 +30,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.body.setSize(70, 132)
     this.body.setOffset(25, 24)
 
-    let theSkin = level % 2 == 0 ? 'blue' : 'green'
     this.playerSpine = new PlayerSpine(scene, this.body.center.x, this.body.bottom)
-    this.playerSpine.setSkin(theSkin)
+    this.playerSpine.setSkin("blue")
   }
 
   kill() {

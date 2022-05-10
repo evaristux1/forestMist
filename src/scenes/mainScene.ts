@@ -33,6 +33,7 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
+ 
     const map = new Map(this.level)
 
     this.cameras.main.setBackgroundColor('#ade6ff')

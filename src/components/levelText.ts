@@ -39,7 +39,7 @@ export default class LevelText extends Phaser.GameObjects.Text {
       yoyo: true,
       delay: 500,
       duration: 200,
-      onComplete: () => console.log('tween 1 completed')
+      onComplete: () => console.log('Primeira parte')
     })
 
     await this.tweensAsync({
@@ -50,7 +50,7 @@ export default class LevelText extends Phaser.GameObjects.Text {
       ease: 'Sine.easeInOut',
       delay: 500,
       duration: 400,
-      onComplete: () => console.log('tween 2 completed')
+      onComplete: () => console.log('Saida FInal')
     })
 
     this.setFontSize(28)
@@ -61,7 +61,7 @@ export default class LevelText extends Phaser.GameObjects.Text {
       alpha: 0,
       delay: 2000,
       duration: 400,
-      onComplete: () => console.log('tween 3 completed')
+      onComplete: () => console.log('tween 3 Tercerida')
     })
 
     this.destroy()
