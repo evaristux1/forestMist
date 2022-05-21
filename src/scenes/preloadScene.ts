@@ -14,7 +14,8 @@ export default class PreloadScene extends Phaser.Scene {
       'controls',
       'background',
       'goal',
-      'bg-univese',
+      'saturno',
+      'bg-universe',
       'green-button',
     ]
     images.forEach((img) => {
