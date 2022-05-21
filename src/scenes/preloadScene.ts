@@ -17,6 +17,7 @@ export default class PreloadScene extends Phaser.Scene {
       'saturno',
       'bg-universe',
       'green-button',
+      'question',
     ]
     images.forEach((img) => {
       this.load.image(img, `assets/img/${img}.png`)

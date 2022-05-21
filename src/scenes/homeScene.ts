@@ -91,12 +91,11 @@ export default class HomeScene extends Phaser.Scene {
       //this.cameras.resize(gameSize.width, gameSize.height)
       resize()
     })
-    resize()
-    const logo = this.add.image(750, 250, 'saturno')
+    const logo = this.add.image(750, 200, 'saturno')
     const playButton = this.add.image(750, 550, 'green-button')
     playButton.setInteractive({ cursor: 'pointer' })
-    logo.scaleX = 0.5
-    logo.scaleY = 0.5
+    logo.scaleX = 0.4
+    logo.scaleY = 0.4
     playButton.scaleX = 0.8
     playButton.scaleY = 0.6
     playButton.on('pointerdown', () => {
@@ -106,6 +105,15 @@ export default class HomeScene extends Phaser.Scene {
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.scene.start('MainScene')
     })
+    const infoImg = this.add.image(map.size.width - 10, map.size.height - 10, 'question')
+    infoImg.scaleX = 0.2
+    infoImg.scaleY = 0.2
+    infoImg.setInteractive({ cursor: 'pointer' })
+    infoImg.on('pointerdown', () => {
+      // this.start.scene("Info");
+      // this.sound.play("click");
+    })
+    resize()
   }
 
   update() {
