@@ -2,8 +2,11 @@ import 'phaser'
 import MainScene from './scenes/mainScene'
 import PreloadScene from './scenes/preloadScene'
 import HomeScene from './scenes/homeScene'
+import InfoPerson from './scenes/personScene'
 // @ts-ignore
 import SpineWebGLPlugin from './plugins/SpineWebGLPlugin'
+import Info from './scenes/infoScene'
+import GameOver from './scenes/gameOverScene'
 
 type scaleMode = 'FIT' | 'SMOOTH'
 
@@ -27,7 +30,7 @@ window.addEventListener('load', () => {
     plugins: {
       scene: [{ key: 'SpineWebGLPlugin', plugin: SpineWebGLPlugin, start: true, sceneKey: 'spine' }],
     },
-    scene: [PreloadScene, HomeScene, MainScene],
+    scene: [PreloadScene, HomeScene, MainScene,Info,InfoPerson,GameOver],
     physics: {
       default: 'arcade',
       arcade: {

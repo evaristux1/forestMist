@@ -1,6 +1,6 @@
 export default class LevelText extends Phaser.GameObjects.Text {
   constructor(public _scene: Phaser.Scene, level: number) {
-    super(_scene, 0, 0, `Level: ${level + 1}`, {
+    super(_scene, 0, 0, `Nível: ${level + 1}`, {
       color: '#324951',
       fontSize: 56,
       fontWeight: 'bold',

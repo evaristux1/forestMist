@@ -36,13 +36,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
   kill() {
     this._dead = true
-
     // animate the camera if the player dies
-    this.scene.cameras.main.shake(500, 0.025)
-    this.scene.time.addEvent({
-      delay: 500,
-      callback: () => this.scene.scene.restart()
-    })
+    this.scene.scene.restart()
   }
 
   killEnemy() {
@@ -58,9 +53,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   update(cursors: any, controls: Controls) {
     if (this._halt || this._dead) return
 
-    // check if out of camera and kill
-    if (this.body.right < this.mapSize.x || this.body.left > this.mapSize.width || this.body.top > this.mapSize.height)
-      this.kill()
+ 
 
     // controls left & right
     if (cursors.left.isDown || controls.leftIsDown) {

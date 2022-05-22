@@ -15,7 +15,7 @@ export default class CoinSingle extends Phaser.Physics.Arcade.Sprite {
       key: 'spin',
       frames: scene.anims.generateFrameNames('coin'),
       frameRate: 16,
-      repeat: -1
+      repeat: -1,
     })
     this.play('spin')
   }
@@ -29,7 +29,7 @@ export default class CoinSingle extends Phaser.Physics.Arcade.Sprite {
       y: this.y - 100,
       duration: 500,
       ease: 'Power2',
-      onComplete: this.destroy.bind(this)
+      onComplete: this.destroy.bind(this),
     })
   }
 }

@@ -10,6 +10,7 @@ import LevelText from '../components/levelText'
 import Background from '../components/background'
 import MiniMap from '../components/miniMap'
 import PhaserVersionText from '../components/phaserVersionText'
+import PointsText from '../components/pointsText'
 
 export default class MainScene extends Phaser.Scene {
   player: Player
@@ -20,10 +21,12 @@ export default class MainScene extends Phaser.Scene {
   controls: Controls
   goal: GoalSprite
   level: number
+  points: number = 0
+  life: number = 3
   miniMap: MiniMap
   constructor() {
     super({
-      key: 'MainScene'
+      key: 'MainScene',
     })
   }
 
@@ -33,7 +36,6 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
- 
     const map = new Map(this.level)
 
     this.cameras.main.setBackgroundColor('#ade6ff')
@@ -46,14 +48,21 @@ export default class MainScene extends Phaser.Scene {
     this.cursors = this.input.keyboard.createCursorKeys()
 
     this.background = new Background(this)
-    this.tilesGroup = new TilesGroup(this, map.info.filter((el: TilesConfig) => el.type === 'tile'))
+    this.tilesGroup = new TilesGroup(
+      this,
+      map.info.filter((el: TilesConfig) => el.type === 'tile')
+    )
     this.goal = new GoalSprite(this, map.info.filter((el: TilesConfig) => el.type === 'goal')[0])
     this.player = new Player(this, map.info.filter((el: TilesConfig) => el.type === 'player')[0], map.size, this.level)
     this.enemiesGroup = new EnemiesGroup(this, map.info)
-    const coinGroup = new CoinGroup(this, map.info.filter((el: TilesConfig) => el.type === 'coin'))
+    const coinGroup = new CoinGroup(
+      this,
+      map.info.filter((el: TilesConfig) => el.type === 'coin')
+    )
     this.controls = new Controls(this)
     const levelText = new LevelText(this, this.level)
-    const phaserVersion = new PhaserVersionText(this, 0, 0, `Phaser v${Phaser.VERSION}`)
+    const phaserVersion = new PhaserVersionText(this, 0, 30, `Vidas ${this.life}`)
+    const textPoints = new PointsText(this, 0, 0, `Pontos ${this.points}`)
 
     this.cameras.main.startFollow(this.player)
 
@@ -66,16 +75,37 @@ export default class MainScene extends Phaser.Scene {
         player.killEnemy()
         enemy.kill()
       } else {
+        enemy.disableBody(true, true)
+
+        this.life--
+        phaserVersion.setText('Vidas: ' + this.life)
         player.kill()
       }
     })
     //@ts-ignore
-    this.physics.add.overlap(this.player, coinGroup, (player, coin) => coin.collect())
+    this.physics.add.overlap(this.player, coinGroup, (player: Player, coin) => {
+      //@ts-ignore
+      coin.disableBody(true, true)
+
+      this.points++
+      textPoints.setText('Score: ' + this.points)
+      //@ts-ignore
+      // if (coinGroup.countActive(true) === 0) {
+      //   coinGroup.children.iterate(function (child) {
+      //     //@ts-ignore
+
+      //     child.enableBody(true, child.x, 0, true, true)
+      //   })
+      // }
+      //@ts-ignore
+      coin.collect()
+    })
     //@ts-ignore
     this.physics.add.overlap(this.player, this.goal, (player: Player, goal: GoalSprite) => {
       player.halt()
       goal.nextLevel(this, this.level)
     })
+    //@ts-ignore
 
     this.miniMap = new MiniMap(
       this,
@@ -91,7 +121,7 @@ export default class MainScene extends Phaser.Scene {
       this.controls.buttons.up,
       this.controls.buttons.left,
       this.controls.buttons.right,
-      phaserVersion
+      textPoints,
     ])
     this.miniMap.update(this.player)
 
@@ -104,7 +134,7 @@ export default class MainScene extends Phaser.Scene {
         callback: () => {
           // @ts-ignore
           loadingScreen.remove()
-        }
+        },
       })
     }
 
@@ -113,6 +143,8 @@ export default class MainScene extends Phaser.Scene {
       this.controls.adjustPositions()
       phaserVersion.x = this.cameras.main.width - 15
       phaserVersion.y = 15
+      textPoints.x = this.cameras.main.width - 15
+      textPoints.y = 35
       this.background.adjustPosition()
       levelText.adjustPosition()
     }
@@ -132,5 +164,22 @@ export default class MainScene extends Phaser.Scene {
     this.enemiesGroup.update()
     this.player.update(this.cursors, this.controls)
     this.miniMap.update(this.player)
+    const map = new Map(this.level)
+    if (this.life == 0) {
+      this.scene.start('GameOver')
+      this.life = 3
+      this.points = 0
+    }
+    if (
+      this.player.body.right < map.size.x ||
+      this.player.body.left > map.size.width ||
+      this.player.body.top > map.size.height
+    ) {
+      this.player.disableBody(true, true)
+      this.life--
+      const phaserVersion = new PhaserVersionText(this, 0, 30, `Vidas ${this.life}`)
+      phaserVersion.setText('Vidas: ' + this.life)
+      this.player.kill()
+    }
   }
 }

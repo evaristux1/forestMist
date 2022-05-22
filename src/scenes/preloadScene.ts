@@ -18,6 +18,10 @@ export default class PreloadScene extends Phaser.Scene {
       'bg-universe',
       'green-button',
       'question',
+      'bg-person',
+      'arrow-left',
+      'home',
+      'game-over'
     ]
     images.forEach((img) => {
       this.load.image(img, `assets/img/${img}.png`)
