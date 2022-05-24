@@ -32,7 +32,10 @@ export default class MainScene extends Phaser.Scene {
 
   init(props: { level?: number }) {
     const { level = 0 } = props
-    this.level = Map.calcCurrentLevel(level)
+    console.log('LV PROPS', level)
+
+    this.level = Map.calcCurrentLevel(this.life == 0 ? 0 : level)
+    console.log('LV THIS', this.level)
   }
 
   create() {
@@ -76,7 +79,6 @@ export default class MainScene extends Phaser.Scene {
         enemy.kill()
       } else {
         enemy.disableBody(true, true)
-
         this.life--
         phaserVersion.setText('Vidas: ' + this.life)
         player.kill()
@@ -159,6 +161,13 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
+    if (
+      (this.cursors.up?.isDown || this.cursors.space?.isDown || this.controls.upIsDown) &&
+      this.player.body.blocked.down
+    ) {
+      const endGameSound = this.sound.add('jump')
+      endGameSound.play()
+    }
     this.background.parallax()
     this.controls.update()
     this.enemiesGroup.update()
@@ -166,9 +175,10 @@ export default class MainScene extends Phaser.Scene {
     this.miniMap.update(this.player)
     const map = new Map(this.level)
     if (this.life == 0) {
-      this.scene.start('GameOver')
+      this.scene.start('GameOver', { points: this.points })
       this.life = 3
       this.points = 0
+      this.level = 0
     }
     if (
       this.player.body.right < map.size.x ||

@@ -99,14 +99,13 @@ export default class HomeScene extends Phaser.Scene {
     })
 
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-      this.scene.start('MainScene')
+      const scene = this.scene.start('MainScene', { level: 0 })
     })
     const infoImg = this.add.image(this.cameras.main.width - 50, this.cameras.main.height - 60, 'question')
     infoImg.scaleX = 0.4
     infoImg.scaleY = 0.4
     infoImg.setInteractive({ cursor: 'pointer' })
     infoImg.on('pointerdown', () => {
-      
       this.scene.start('Info')
     })
 

@@ -65,6 +65,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     }
     // controls up
     if ((cursors.up.isDown || cursors.space.isDown || controls.upIsDown) && this.body.blocked.down) {
+
       this.setVelocityY(-1250)
     }
 
