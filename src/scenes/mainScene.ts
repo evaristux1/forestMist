@@ -161,13 +161,6 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
-    if (
-      (this.cursors.up?.isDown || this.cursors.space?.isDown || this.controls.upIsDown) &&
-      this.player.body.blocked.down
-    ) {
-      const endGameSound = this.sound.add('jump')
-      endGameSound.play()
-    }
     this.background.parallax()
     this.controls.update()
     this.enemiesGroup.update()

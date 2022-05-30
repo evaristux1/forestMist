@@ -21,7 +21,7 @@ export default class PreloadScene extends Phaser.Scene {
       'bg-person',
       'arrow-left',
       'home',
-      'game-over'
+      'game-over',
     ]
     images.forEach((img) => {
       this.load.image(img, `assets/img/${img}.png`)
@@ -31,8 +31,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.spritesheet('bee', 'assets/img/bee.png', { frameHeight: 100, frameWidth: 128 })
     this.load.spritesheet('slime', 'assets/img/slime.png', { frameHeight: 68, frameWidth: 112 })
     this.load.setPath('assets/spine')
-  this.load.audio("jump","assets/audio/colectCoin.wav");
-  this.load.audio("gameOver","assets/audio/gameOver.wav");
+    this.load.audio('jump', 'assets/audio/colectCoin.wav')
+    this.load.audio('gameOver', 'assets/audio/gameOver.wav')
 
     // @ts-ignore
     this.load.spine('boy', 'boy.json', 'boy.atlas')

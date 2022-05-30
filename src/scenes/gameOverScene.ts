@@ -12,10 +12,7 @@ export default class GameOver extends Phaser.Scene {
     this.level = level
     this.points = points
   }
-  preload() {
-
-
-  }
+  preload() {}
 
   create() {
     const map = new Map(0)
@@ -30,11 +27,11 @@ export default class GameOver extends Phaser.Scene {
     let image = this.add.image(80, 0, 'game-over').setOrigin(0, 0)
     image.setScale(0.5)
     const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2
-    const screenCenterY = this.cameras.main.worldView.y + 100 + this.cameras.main.height / 2
+    const screenCenterY = this.cameras.main.worldView.y + 75 + this.cameras.main.height / 2
     const loadingText = this.add
-      .text(screenCenterX, screenCenterY, `PONTUAÇÃO: ${this.points}`, {
+      .text(screenCenterX, screenCenterY, `${this.points}`, {
         color: '#111',
-        fontSize: '150px',
+        fontSize: '40px',
         fontWeight: 'bold',
         letterSpacing: ' -1px',
         lineheight: 1,
