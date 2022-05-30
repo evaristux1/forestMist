@@ -24,6 +24,7 @@ export default class MainScene extends Phaser.Scene {
   points: number = 0
   life: number = 3
   miniMap: MiniMap
+  soundBackground: any
   constructor() {
     super({
       key: 'MainScene',
@@ -32,7 +33,12 @@ export default class MainScene extends Phaser.Scene {
 
   init(props: { level?: number }) {
     const { level = 0 } = props
-    console.log('LV PROPS', level)
+    if (level == 0) {
+      this.soundBackground = this.sound.add('bgsound')
+      this.soundBackground.loop = true
+
+      this.soundBackground.play()
+    }
 
     this.level = Map.calcCurrentLevel(this.life == 0 ? 0 : level)
     console.log('LV THIS', this.level)
@@ -161,13 +167,6 @@ export default class MainScene extends Phaser.Scene {
   }
 
   update() {
-    if (
-      (this.cursors.up?.isDown || this.cursors.space?.isDown || this.controls.upIsDown) &&
-      this.player.body.blocked.down
-    ) {
-      const endGameSound = this.sound.add('jump')
-      endGameSound.play()
-    }
     this.background.parallax()
     this.controls.update()
     this.enemiesGroup.update()
@@ -175,7 +174,10 @@ export default class MainScene extends Phaser.Scene {
     this.miniMap.update(this.player)
     const map = new Map(this.level)
     if (this.life == 0) {
+      this.sound.stopAll()
       this.scene.start('GameOver', { points: this.points })
+      const sound = this.sound.add('dead')
+      sound.play()
       this.life = 3
       this.points = 0
       this.level = 0

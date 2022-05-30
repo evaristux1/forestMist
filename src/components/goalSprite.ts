@@ -18,7 +18,8 @@ export default class GoalSprite extends Phaser.Physics.Arcade.Sprite {
   nextLevel(scene: Phaser.Scene, level: number) {
     if (this._loadNextLevel) return
     this._loadNextLevel = true
-
+    const sound = this.scene.sound.add('openDoor')
+    sound.play()
     scene.cameras.main.fadeOut()
     scene.time.addEvent({
       delay: 2000,
