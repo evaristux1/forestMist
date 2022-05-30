@@ -7,7 +7,7 @@ import InfoPerson from './scenes/personScene'
 import SpineWebGLPlugin from './plugins/SpineWebGLPlugin'
 import Info from './scenes/infoScene'
 import GameOver from './scenes/gameOverScene'
-
+import HistoryScene from './scenes/historySCENE'
 type scaleMode = 'FIT' | 'SMOOTH'
 
 const DEFAULT_WIDTH: number = 1280
@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
     plugins: {
       scene: [{ key: 'SpineWebGLPlugin', plugin: SpineWebGLPlugin, start: true, sceneKey: 'spine' }],
     },
-    scene: [PreloadScene, HomeScene, MainScene,Info,InfoPerson,GameOver],
+    scene: [PreloadScene, HomeScene, MainScene, Info, InfoPerson, GameOver, HistoryScene],
     physics: {
       default: 'arcade',
       arcade: {

@@ -22,8 +22,6 @@ export default class PreloadScene extends Phaser.Scene {
       'arrow-left',
       'home',
       'game-over',
-      'history',
-      'historiaInicial',
     ]
     images.forEach((img) => {
       this.load.image(img, `assets/img/${img}.png`)
@@ -40,8 +38,6 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio('gameOver', 'assets/audio/gameOver.wav')
 
     this.load.setPath('assets/spine')
-    this.load.audio('jump', 'assets/audio/colectCoin.wav')
-    this.load.audio('gameOver', 'assets/audio/gameOver.wav')
 
     // @ts-ignore
     this.load.spine('boy', 'boy.json', 'boy.atlas')

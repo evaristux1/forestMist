@@ -32,13 +32,6 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.spritesheet('coin', 'assets/img/coin.png', { frameHeight: 42, frameWidth: 42 })
     this.load.spritesheet('bee', 'assets/img/bee.png', { frameHeight: 100, frameWidth: 128 })
     this.load.spritesheet('slime', 'assets/img/slime.png', { frameHeight: 68, frameWidth: 112 })
-    this.load.audio('jump', 'assets/audio/jump.mp3')
-    this.load.audio('colectCoin', 'assets/audio/colectCoin.wav')
-    this.load.audio('bgsound', 'assets/audio/musicGame.mp3')
-    this.load.audio('dead', 'assets/audio/dead.mp3')
-    this.load.audio('openDoor', 'assets/audio/openDoor.mp3')
-    this.load.audio('gameOver', 'assets/audio/gameOver.wav')
-
     this.load.setPath('assets/spine')
     this.load.audio('jump', 'assets/audio/colectCoin.wav')
     this.load.audio('gameOver', 'assets/audio/gameOver.wav')

@@ -108,6 +108,13 @@ export default class HomeScene extends Phaser.Scene {
     infoImg.on('pointerdown', () => {
       this.scene.start('Info')
     })
+    const historyImg = this.add.image(this.cameras.main.width - 150, this.cameras.main.height - 60, 'history')
+    historyImg.scaleX = 0.4
+    historyImg.scaleY = 0.4
+    historyImg.setInteractive({ cursor: 'pointer' })
+    historyImg.on('pointerdown', () => {
+      this.scene.start('HistoryScene')
+    })
 
     resize()
   }
