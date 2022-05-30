@@ -22,6 +22,8 @@ export default class PreloadScene extends Phaser.Scene {
       'arrow-left',
       'home',
       'game-over',
+      'history',
+      'historiaInicial',
     ]
     images.forEach((img) => {
       this.load.image(img, `assets/img/${img}.png`)
